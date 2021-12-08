@@ -3,6 +3,7 @@ title: "18F-0240_7A_GoogleTrendAnalytic"
 author: "18F-0240"
 date: "12/7/2021"
 output: pdf_document
+Github link: "https://github.com/HuzaifahZia/Google-Search-Analytics-/blob/main/18F-0240_7A_GoogleTrendsAnalytics.Rmd"
 ---
 
 ```{r setup, include=FALSE}
@@ -15,34 +16,42 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
+
+## Google Trend Analysis
+Installing Libraries
 ```{r}
 library(gtrendsR)
 library(ggplot2)
 library(scales)
 ```
-
+-Getting data Searches for Machine Learning by region
+-reviewing data
+-omiting unwanted columns
+-omiting NAs
+-reviewing data's first 10 rows
 ```{r}
 data = gtrends(keyword = "Machine Learning")$interest_by_country
+head(data)
 data = data[-c(3:5)]
 data = na.omit(data)
 head(data,10)
 ```
 
-
+-plotting a bar graph for reviewed data
 ```{r}
 ggplot(data=head(data,10), aes(x=reorder(location,-hits), y=hits)) +
   geom_bar(stat="identity", fill="steelblue")+ labs(x = "geoName", y = "Machine learning", color = "Legend Title\n")+
 theme(axis.text.x = element_text(angle = 90))
-
 ```
 
-
+-Getting data Number Searches for Machine Learning over time
+-omiting unwanted columns
 ```{r}
 data = gtrends(keyword = "Machine Learning")$interest_over_time
 data = data[-c(3:7)]
-head(data,10)
-tail(data,1)
 ```
+
+-plotting a line graph for retrived data
 ```{r}
 ggplot(data=data, 
        aes(x=date, y=hits)) +
