@@ -18,6 +18,7 @@ When you click the **Knit** button a document will be generated that includes bo
 
 
 ## Google Trend Analysis
+Github link: "https://github.com/HuzaifahZia/Google-Search-Analytics-/blob/main/18F-0240_7A_GoogleTrendsAnalytics.Rmd"
 Installing Libraries
 ```{r}
 library(gtrendsR)
